@@ -42,11 +42,7 @@ botao.addEventListener("click", function (event) {
 
     var form = document.querySelector("#form-adiciona");
 
-    var paciente = pegarPacienteDoForm(form);
-
-    adicionarPaciente(paciente);
-
-    form.reset();
+    adicionarPaciente(form);
 });
 
 function calcularIMC(peso, altura) {

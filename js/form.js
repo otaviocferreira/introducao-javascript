@@ -31,14 +31,39 @@ function ehUmaAlturaValida(altura) {
     return true;
 }
 
-function adicionarPaciente(paciente) {
+function adicionarPaciente(form) {
+    var paciente = pegarPacienteDoForm(form);
+
     var erros = validarNovoPaciente(paciente);
 
+    box = document.querySelector("#mensagem-validacao");
+
     if (erros.length > 0) {
-        montarMensagensValidacao(erros);
+        montarMensagensValidacao(erros, box);
         return;
     }
 
+    inserirPacienteNaTabela(paciente);
+
+    limparFormularioEValidacao(form, box);
+}
+
+function montarCampo(linha, valor, classe) {
+    var campo = document.createElement("td");
+    campo.textContent = valor;
+    campo.classList.add(classe);
+    linha.appendChild(campo);
+}
+
+function montarMensagensValidacao(erros, boxMensagens) {
+    for (var i = 0; i < erros.length; i++) {
+        var mensagem = document.createElement("li");
+        mensagem.textContent = erros[i];
+        boxMensagens.appendChild(mensagem);
+    }
+}
+
+function inserirPacienteNaTabela(paciente) {
     var pacientes = document.querySelector("#tabela-pacientes");
     var linha = document.createElement("tr");
     linha.classList.add("paciente");
@@ -55,19 +80,7 @@ function adicionarPaciente(paciente) {
     pacientes.appendChild(linha);
 }
 
-function montarCampo(linha, valor, classe) {
-    var campo = document.createElement("td");
-    campo.textContent = valor;
-    campo.classList.add(classe);
-    linha.appendChild(campo);
-}
-
-function montarMensagensValidacao(erros) {
-    boxMensagens = document.querySelector("#mensagem-validacao");
-
-    for (var i = 0; i < erros.length; i++) {
-        var mensagem = document.createElement("li");
-        mensagem.textContent = erros[i];
-        boxMensagens.appendChild(mensagem);
-    }
+function limparFormularioEValidacao(form, box) {
+    form.reset();
+    box.innerHTML = "";
 }
