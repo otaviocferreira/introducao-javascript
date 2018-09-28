@@ -31,8 +31,7 @@ function ehUmaAlturaValida(altura) {
     return true;
 }
 
-function adicionarPaciente(form) {
-    var paciente = pegarPacienteDoForm(form);
+function adicionarPaciente(paciente) {
 
     var erros = validarNovoPaciente(paciente);
 
@@ -44,8 +43,6 @@ function adicionarPaciente(form) {
     }
 
     inserirPacienteNaTabela(paciente);
-
-    limparFormularioEValidacao(form, box);
 }
 
 function montarCampo(linha, valor, classe) {
