@@ -141,3 +141,8 @@ button[disabled=disabled], button:disabled {
 #mensagem-validacao {
 	color: red;
 }
+
+.fadeOut {
+	opacity: 0;
+	transition: 0.5s;
+}
